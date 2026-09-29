@@ -1,6 +1,6 @@
 <?php
 
-namespace PayWire\Core\Payment\Application\Command;
+namespace PayWire\Core\Application\Command;
 
 use PayWire\Core\Payment\GatewayEnum;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace PayWire\Core\Payment\Application\Command;
+namespace PayWire\Core\Application\Command;
 
-use PayWire\Core\Payment\Application\EventBusInterface;
+use PayWire\Core\Application\EventBusInterface;
 use PayWire\Core\Payment\Payment;
 use PayWire\Core\Payment\PaymentId;
 use PayWire\Core\Payment\PaymentRepositoryInterface;
-use PayWire\Core\Tests\Shared\Money;
+use PayWire\Core\Shared\Money;
 
 class InitializePaymentHandler
 {

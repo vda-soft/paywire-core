@@ -3,7 +3,7 @@
 namespace PayWire\Core\Payment;
 
 use PayWire\Core\Shared\Infrastructure\Event\PublishedEvent;
-use PayWire\Core\Tests\Shared\Money;
+use PayWire\Core\Shared\Money;
 
 class Payment
 {

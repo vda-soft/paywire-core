@@ -1,6 +1,6 @@
 <?php
 
-namespace PayWire\Core\Tests\Shared;
+namespace PayWire\Core\Shared;
 
 use Brick\Money\Money as BrickMoney;
 

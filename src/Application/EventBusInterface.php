@@ -1,6 +1,6 @@
 <?php
 
-namespace PayWire\Core\Payment\Application;
+namespace PayWire\Core\Application;
 
 use PayWire\Core\Shared\Infrastructure\Event\PublishedEvent;
 
