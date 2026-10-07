@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace PayWire\Core\Tests\Domain\Payment;
 
+use PayWire\Core\Domain\Payment\CustomerReference;
 use PayWire\Core\Domain\Payment\GatewayEnum;
+use PayWire\Core\Domain\Payment\OrderReference;
 use PayWire\Core\Domain\Payment\Payment;
 use PayWire\Core\Domain\Payment\PaymentAlreadyInStatus;
 use PayWire\Core\Domain\Payment\PaymentCompleted;
@@ -22,7 +24,10 @@ final class PaymentTest extends TestCase
         $payment = Payment::initialize(
             PaymentId::generate(),
             GatewayEnum::PayU,
-            Money::create('12.34', 'USD'),
+            Money::of('12.34', 'USD'),
+            new OrderReference('giftCard', 'order-id'),
+            new CustomerReference('customer@paywire.fake', 'customer-id'),
+            'Payment for #123'
         );
 
         $events = \iterator_to_array($payment->releaseEvents());
@@ -38,6 +43,9 @@ final class PaymentTest extends TestCase
             PaymentId::generate(),
             GatewayEnum::PayU,
             Money::zero('USD'),
+            new OrderReference('giftCard', 'order-id'),
+            new CustomerReference('customer@paywire.fake', 'customer-id'),
+            'Payment for #123'
         );
 
         $payment->markSubmitted('order-id');
@@ -57,6 +65,9 @@ final class PaymentTest extends TestCase
             PaymentId::generate(),
             GatewayEnum::PayU,
             Money::zero('USD'),
+            new OrderReference('giftCard', 'order-id'),
+            new CustomerReference('customer@paywire.fake', 'customer-id'),
+            'Payment for #123'
         );
 
         $payment->markCompleted();
@@ -72,6 +83,9 @@ final class PaymentTest extends TestCase
             PaymentId::generate(),
             GatewayEnum::PayU,
             Money::zero('USD'),
+            new OrderReference('giftCard', 'order-id'),
+            new CustomerReference('customer@paywire.fake', 'customer-id'),
+            'Payment for #123'
         );
 
         self::assertTrue($payment->canSubmit());

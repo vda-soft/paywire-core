@@ -6,24 +6,27 @@ namespace PayWire\Core\Domain\Payment;
 
 use Symfony\Component\Uid\Uuid;
 
-final readonly class PaymentId implements \Stringable
+final readonly class PaymentId implements \Stringable, \JsonSerializable
 {
-    private function __construct(public private(set) Uuid $id)
+    private function __construct(public private(set) string $id)
     {
     }
 
     public static function generate(): self
     {
-        return new self(Uuid::v7());
-    }
-
-    public static function fromString(string $id): self
-    {
-        return new self(Uuid::fromString($id));
+        return new self(Uuid::v7()->toString());
     }
 
     public function __toString(): string
     {
-        return $this->id->__toString();
+        return $this->id;
+    }
+
+    /**
+     * @return array{id: string}
+     */
+    public function jsonSerialize(): array
+    {
+        return ['id' => $this->id];
     }
 }
