@@ -22,7 +22,7 @@ final class PaymentTest extends TestCase
     public function testInitializeRecordsEventAndReleaseClearsEvents(): void
     {
         $payment = Payment::initialize(
-            PaymentId::generate(),
+            new PaymentId(),
             GatewayEnum::PayU,
             Money::of('12.34', 'USD'),
             new OrderReference('giftCard', 'order-id'),
@@ -40,7 +40,7 @@ final class PaymentTest extends TestCase
     public function testCompletingPaymentRecordsCompletionEvent(): void
     {
         $payment = Payment::initialize(
-            PaymentId::generate(),
+            new PaymentId(),
             GatewayEnum::PayU,
             Money::zero('USD'),
             new OrderReference('giftCard', 'order-id'),
@@ -62,7 +62,7 @@ final class PaymentTest extends TestCase
     public function testCannotCompletePaymentTwice(): void
     {
         $payment = Payment::initialize(
-            PaymentId::generate(),
+            new PaymentId(),
             GatewayEnum::PayU,
             Money::zero('USD'),
             new OrderReference('giftCard', 'order-id'),
@@ -80,7 +80,7 @@ final class PaymentTest extends TestCase
     public function testCanSubmitOnlyWhenStateMachineAllowsTransitionToSubmitted(): void
     {
         $payment = Payment::initialize(
-            PaymentId::generate(),
+            new PaymentId(),
             GatewayEnum::PayU,
             Money::zero('USD'),
             new OrderReference('giftCard', 'order-id'),

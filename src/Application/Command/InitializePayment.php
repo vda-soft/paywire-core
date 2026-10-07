@@ -23,11 +23,11 @@ final readonly class InitializePayment implements \JsonSerializable
         public ?string $posId = null,
         ?PaymentId $paymentId = null,
     ) {
-        $this->paymentId = $paymentId ?? PaymentId::generate();
+        $this->paymentId = $paymentId ?? new PaymentId();
     }
 
     /**
-     * @return array{paymentId: array{id: string}, gateway: value-of<GatewayEnum>, total: array{amount: string, currency: string}, description: string, order: array{type: string, id: string}, customer: array{email: string, id: string}, posId: string|null}
+     * @return array{paymentId: string, gateway: value-of<GatewayEnum>, total: array{amount: string, currency: string}, description: string, order: array{type: string, id: string}, customer: array{email: string, id: string}, posId: string|null}
      */
     public function jsonSerialize(): array
     {
