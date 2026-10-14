@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PayWire\Core\Application\Command;
 
-use PayWire\Core\Application\EventBusInterface;
+use PayWire\Core\Application\EventBus;
 use PayWire\Core\Domain\Payment\Payment;
 use PayWire\Core\Domain\Payment\PaymentRepository;
 
@@ -12,7 +12,7 @@ class InitializePaymentHandler
 {
     public function __construct(
         private PaymentRepository $paymentRepository,
-        private EventBusInterface $eventBus,
+        private EventBus $eventBus,
     ) {
     }
 

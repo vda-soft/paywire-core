@@ -8,5 +8,7 @@ use PayWire\Core\Domain\Payment\Payment;
 
 interface Gateway
 {
-    public function submit(Payment $payment): SubmissionResult;
+    public function prepareSubmitRequest(Payment $payment): SubmitRequest;
+
+    public function submit(Payment $payment, SubmitRequest $submitRequest): SubmissionResult;
 }

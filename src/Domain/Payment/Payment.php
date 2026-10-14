@@ -22,7 +22,7 @@ class Payment
     public private(set) readonly OrderReference $order;
     public private(set) readonly CustomerReference $customer;
     public private(set) readonly string $description;
-    public private(set) readonly string $publicToken;
+    public private(set) readonly string $urlToken;
 
     public private(set) ?Details $details = null;
     /** @var list<array{type: class-string<\JsonSerializable>, timestamp: int, data: mixed}> */
@@ -49,10 +49,10 @@ class Payment
         $this->order = $order;
         $this->customer = $customer;
         $this->description = $description;
-        $this->publicToken = UrlTokenGenerator::generate();
+        $this->urlToken = UrlTokenGenerator::generate();
         $this->posId = $posId;
 
-        $occurredAt = ClockRegistry::get()->now();
+        $occurredAt = ClockRegistry::get()->nowWithMicroseconds();
         $this->createdAt = $occurredAt;
         $this->updatedAt = $occurredAt;
 
@@ -132,7 +132,7 @@ class Payment
 
         $this->eventLog[] = [
             'type' => $event::class,
-            'timestamp' => ClockRegistry::get()->now()->getTimestamp(),
+            'timestamp' => ClockRegistry::get()->nowWithMicroseconds()->getTimestamp(),
             'data' => $data,
             'truncated' => $isTruncated,
         ];

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PayWire\Core\Domain\Shared;
 
-final readonly class SubmissionResult implements \JsonSerializable
+readonly class SubmissionResult implements \JsonSerializable
 {
     /** @param string|array<array-key, mixed> $rawResponse */
     public function __construct(

@@ -175,7 +175,5 @@ final class PaymentTest extends TestCase
         $events = \iterator_to_array($payment->releaseEvents());
         self::assertSame($fixedTime, $events[0]->occurredAt);
         self::assertSame($fixedTime->getTimestamp(), $payment->eventLog[0]['timestamp']);
-
-        // tearDown() will reset the clock automatically
     }
 }
